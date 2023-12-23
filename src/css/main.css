@@ -1,0 +1,144 @@
+/* css reseting */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* header starts here */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+    padding: 20px;
+    background-color: #1d1283;
+    color: white;
+}
+
+#title {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+
+}
+
+#devloper-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+    transition: transform .8s;
+}
+
+.logo:hover {
+    transform: scale(1.15);
+}
+
+/* header ends here */
+
+/* main section start here */
+#hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 30px;
+
+}
+
+#hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#hero-image {
+    height: 400px;
+    width: 400px;
+}
+
+#hero-container h3 {
+    overflow: hidden;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    font-size: 1.5rem;
+    animation:
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: orange;
+    }
+}
+
+#form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    padding: 10px;
+    border-radius: 5px;
+    align-items: center;
+    gap: 20px;
+}
+
+#form-container h3 {
+    font-size: 2rem;
+}
+
+#simulator-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.simulator-input {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+#simulator-button {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: blueviolet;
+    color: white;
+    font-size: 1rem;
+    transition: all 1s;
+    font-weight: bold;
+}
+
+#simulator-button:hover {
+    transform: scale(1.2);
+}
