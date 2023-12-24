@@ -67,7 +67,7 @@ header {
 
 #hero-container h3 {
     overflow: hidden;
-    border-right: .15em solid orange;
+    border-right: 0 solid orange;
     white-space: nowrap;
     margin: 0 auto;
     letter-spacing: .15em;
@@ -129,7 +129,7 @@ header {
     border-radius: 5px;
 }
 
-#simulator-button {
+#simulator-button,button{
     padding: 5px;
     border-radius: 10px;
     background-color: blueviolet;
@@ -142,3 +142,42 @@ header {
 #simulator-button:hover {
     transform: scale(1.2);
 }
+/* lifts and floor section starts here. */
+.floor{
+    border-bottom: 2px solid green;
+    max-height: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    gap:1rem;
+    margin: 10px;
+    z-index: 1;
+}
+
+.lift{
+    background-color: orange;
+    height: 100px;
+    max-height: 100px;
+    width: 80px;
+    z-index: 2;
+    display: flex;
+    border: 1px solid var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 0;
+}
+.door{
+    border: 1px solid black;
+    
+    background-color: var(--door-color);
+    width: 40px;
+}
+.door-left{
+    border-radius:4px 0 0 4px;
+    background-color: aquamarine;
+}
+.door-right{
+    border-radius:0 4px 4px 0;
+    background-color: aquamarine;
+}
+/* lifts and floor section ends here. */
