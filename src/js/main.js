@@ -102,6 +102,13 @@ const generateLifts = (liftCount) => {
 const liftButtonHandler = (event) => {
   const buttonId = event.target.id;
   const floorNumber = Number(buttonId.charAt(buttonId.length - 1));
+  const liftAtFloor = lifts.find(
+    (lift) => lift.currentFloor === floorNumber && lift.isMoving === false
+  );
+  if (liftAtFloor) {
+    openLiftDoors(liftAtFloor.id);
+    return;
+  }
   const isLiftGoingToFloor = lifts.find(
     (lift) => lift.movingTo === floorNumber && lift.isMoving === true
   );
@@ -111,7 +118,23 @@ const liftButtonHandler = (event) => {
   }
   pending.push(floorNumber);
 };
-
+const openLiftDoors = (liftId) => {
+  const lift = lifts.find((lift) => lift.id === liftId);
+  const leftDoor = document.querySelector(`#left-door${liftId}`);
+  const rightDoor = document.querySelector(`#right-door${liftId}`);
+  setTimeout(() => {
+    leftDoor.style.transform = `translateX(-100%)`;
+    leftDoor.style.transition = `transform 2.5s`;
+    rightDoor.style.transform = `translateX(100%)`;
+    rightDoor.style.transition = `transform 2.5s`;
+  }, 2500);
+  setTimeout(() => {
+    leftDoor.style.transform = `translateX(0)`;
+    leftDoor.style.transition = `transform 2.5s`;
+    rightDoor.style.transform = `translateX(0)`;
+    rightDoor.style.transition = `transform 2.5s`;
+  }, 5000);
+};
 const findNearestLift = (lifts, destinationFloor) => {
   let nearestLiftDistance = floors.length;
   let nearestLiftId = lifts[0];
@@ -131,9 +154,9 @@ const moveLift = (source, destination, liftId) => {
   const lift = lifts.find((lift) => lift.id === liftId);
 
   // If the lift is already at the requested floor, return without doing anything
-  if (lift.currentFloor === destination) {
-    return;
-  }
+  // if (lift.currentFloor === destination) {
+  //   return;
+  // }
 
   const distance = -1 * destination * 160;
   const time = Math.abs(source - destination) * 2;
