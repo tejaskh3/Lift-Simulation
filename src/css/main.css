@@ -1,0 +1,68 @@
+.floor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px 0;
+  height: 75px;
+  position: relative;
+}
+
+.floor-number {
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.buttons-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.lift {
+  width: 50px;
+  height: 50px;
+  background-color: gray;
+  transition: transform 2s ease-in-out;
+  position: absolute;
+}
+
+.left-door, .right-door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 48%;
+  background-color: #333;
+  transition: transform 2s ease-in-out;
+}
+
+.left-door {
+  left: 0;
+  transform-origin: left;
+}
+
+.right-door {
+  right: 0;
+  transform-origin: right;
+}
+
+.buttons-box>button.up {
+  padding: 3px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: lightgreen;
+  transition: background-color 0.3s ease;
+}
+
+.buttons-box>button.down {
+  padding: 3px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: lightcoral;
+  transition: background-color 0.3s ease;
+}
+
