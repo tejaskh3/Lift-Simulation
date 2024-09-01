@@ -3,7 +3,7 @@ const displayAllFloors = document.getElementById("displayAllFloors");
 
 let floors=[]
 let liftsInfo = [];
-
+let queue=[];
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const lifts = Number(document.getElementById("no-of-lifts").value);
@@ -41,14 +41,14 @@ const displayFloors=(floorsCount,liftsCount)=>{
         upButton.innerText='Up';
         upButton.id = `up${floorsCount - i - 1}`;
         upButton.classList.add('up');
-        // upButton.addEventListener('click',buttonClickHandler);
+        upButton.addEventListener("click",buttonClickHandler);
 
         //DOWN BUTTON
         const downButton=document.createElement('button');
         downButton.innerText = "Down";
         downButton.id = `down${floorsCount - i - 1}`;
         downButton.classList.add("down");
-        // downButton.addEventListener("click", buttonClickHandler);
+        downButton.addEventListener("click", buttonClickHandler);
 
         //CREATING SPAN OF FLOOR NUMBERS
         const floorNumber=document.createElement('span');
@@ -92,17 +92,39 @@ const displayLifts = (liftCount) => {
     lift.style.left = `${100 + i * 100}px`;
     const currLiftState = {
       id: i,
+      isActive: false,
       currentFloor: 0,
       domElement: lift,
-      innerHtML: ``,
       isMoving: false,
-      lastButtonCalled: null,
-      isBusy: false,
-      goingTo: null,
+      movingTo: null,
     };
     floor0.appendChild(lift);
     liftsInfo.push(currLiftState);
   }
-
 };
+
+const buttonClickHandler=(event)=>{
+    const buttonId=event.target.id; // gives the id of button clicked
+    const floorNumber=Number(buttonId.charAt(buttonId.length-1)); // extracting the floorNumber from buttonId
+    
+    const notMovingLift=liftsInfo.find((lift)=> lift.currentFloor === floorNumber && lift.isMoving===false);
+    // console.log(notMovingLift);
+    if(notMovingLift){
+        openLiftDoors(notMovingLift.id);
+        return;
+    }
+
+    const liftGoingToFloor=liftsInfo.find((lift)=> lift.movingTo===floorNumber && lift.isMoving===true);
+    if(liftGoingToFloor){
+        console.log("Lift is coming to your desired floor");
+    }
+    queue.push(floorNumber);
+}
+// console.log(queue);
+
+
+const openLiftDoors=(liftId)=>{
+    // console.log(liftId);
+    
+}
 
