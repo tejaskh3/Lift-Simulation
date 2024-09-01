@@ -100,6 +100,10 @@ const displayLifts = (liftCount) => {
     };
     floor0.appendChild(lift);
     liftsInfo.push(currLiftState);
+    if (intervalId) clearInterval(intervalId);
+    intervalId = setInterval(() => {
+      scheduleLift();
+    }, 100);
   }
 };
 
@@ -123,8 +127,38 @@ const buttonClickHandler=(event)=>{
 // console.log(queue);
 
 
-const openLiftDoors=(liftId)=>{
-    // console.log(liftId);
-    
+const openLiftDoors = (liftId) => {
+  const lift = liftsInfo.find((lift) => lift.id === liftId);
+  console.log(lift);
+  
+  const leftDoor = document.querySelector(`#left-door${liftId}`);
+  const rightDoor = document.querySelector(`#right-door${liftId}`);
+  setTimeout(() => {
+    leftDoor.style.transform = `translateX(-100%)`;
+    leftDoor.style.transition = `transform 2.5s`;
+    rightDoor.style.transform = `translateX(100%)`;
+    rightDoor.style.transition = `transform 2.5s`;
+  }, 2500);
+  setTimeout(() => {
+    leftDoor.style.transform = `translateX(0)`;
+    leftDoor.style.transition = `transform 2.5s`;
+    rightDoor.style.transform = `translateX(0)`;
+    rightDoor.style.transition = `transform 2.5s`;
+  }, 5000);
+};
+
+const scheduleLift=()=>{
+    if(queue.length===0) return;
+    const pendingFloor=queue.shift();
+    const nearestLiftId=findNearestLift(liftsInfo,pendingFloor);
+    const nearestLift=liftsInfo.find((lift)=> lift.id=== nearestLiftId);
+    if(!nearestLift){
+        queue.unshift(pendingFloor);
+        console.log("No Lift is currently Available");
+        return;
+    }
+    moveLift(nearestLiftId.currentFloor,pendingFloor,nearestLiftId);
 }
+
+
 
