@@ -1,68 +1,75 @@
-.floor {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 5px 0;
-  height: 75px;
-  position: relative;
+
+.buttons-box{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons-box>button{
+    width: 50px;
+}
+
+.buttons-box>button.up{
+    background-color:coral ;
+    color: black;
+    font-weight: bold;
+    border-radius: 4px;
 }
 
 .floor-number {
-  font-weight: bold;
-  margin-right: 20px;
+    text-align: center;
+    font-weight: bold;
 }
 
-.buttons-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+.buttons-box>button.down{
+    background-color: aqua;
+    color: black;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 4px;
 }
 
-.lift {
-  width: 50px;
-  height: 50px;
-  background-color: gray;
-  transition: transform 2s ease-in-out;
-  position: absolute;
+.floor{
+    border-bottom: 1px solid black;
+    max-height: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    z-index: 1;
 }
 
-.left-door, .right-door {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 48%;
-  background-color: #333;
-  transition: transform 2s ease-in-out;
+.lift{
+    background-color: black;
+    color: white;
+    height: 60px;
+    max-height: 80px;
+    width: 60px;
+    z-index: 2;
+    position: absolute;
+    left:50px;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 0;
+}
+
+.door{
+    border: 1px solid rgb(0, 0, 0);
+    display: flex;
+    text-align: center;
+    background-color: grey;
+    width: 40px;
+    font-weight: bold;
 }
 
 .left-door {
-  left: 0;
-  transform-origin: left;
+    color: black;
+    padding-top: 30px;
+    justify-content: flex-end;
 }
 
-.right-door {
-  right: 0;
-  transform-origin: right;
+.right-door{
+    color: black;
+    padding-top: 30px;
 }
-
-.buttons-box>button.up {
-  padding: 3px 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: lightgreen;
-  transition: background-color 0.3s ease;
-}
-
-.buttons-box>button.down {
-  padding: 3px 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: lightcoral;
-  transition: background-color 0.3s ease;
-}
-
